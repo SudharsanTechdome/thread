@@ -1,0 +1,30 @@
+{
+  "LoginData": {
+    "email_field": "sudharsanworklife@gmail.com",
+    "password_field": "Sudharsan#18",
+    "password_text": "Sudharsan#48",
+    "email_feed": "test123@yopmail",
+    "email": "test123@yopmail.com",
+    "password_feed": "Test@123"
+  },
+"LeadsData": {
+  "partial_name": "a2b",
+  "partial_number": "54123",
+  "partial_id": "test@yopmail",
+  "full_name": "Test",
+  "contact_number": "6987451230",
+  "email_id": "test@yopmail.com",
+  "valid_number": "9856341459",
+  "search_text": "Sudharsan V",
+  "search_loan_type": "Home",
+  "empty_validation_message": "This field is required",
+  "ep_user_name": "Sudharsan VV",
+  "ep_user_test": "Sudharsan V",
+  "ep_user_id": "sudharsanworklife@gmail.com",
+  "ep_invalid_name": "ab",
+  "ep_invalid_id": "test@yop",
+  "notesData": "test",
+  "document": "Aadhar"
+}
+
+}

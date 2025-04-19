@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Parallel Test Suite" parallel="methods" thread-count="2" data-provider-thread-count="3">
+    <listeners>
+        <listener class-name="Saral.listeners.ExtentReportListener"/>
+    </listeners>
+
+    <!-- Test group for login functionality -->
+    <test name="Login Tests">
+        <classes>
+            <class name="com.techdome.saralCRM.test.LoginTest"/>
+          <class name="com.techdome.saralCRM.test.LeadsTest"></class>
+            <parameter name="browser" value="${browser:chromium}"/>
+        </classes>
+    </test>
+    <test name="Leads Tests">
+        <classes>
+
+            <class name="com.techdome.saralCRM.test.LeadsTest"></class>
+            <parameter name="browser" value="${browser:chromium}"/>
+        </classes>
+    </test>
+
+
+
+
+    <!-- Cross-browser testing example
+    <test name="Cross Browser Tests" parallel="tests" thread-count="2">
+        <parameter name="browser" value="${browser:chrome}"/>  Default to chrome if not specified
+        <classes>
+            <class name="com.techdome.saralCRM.test.CrossBrowserTest"/>
+        </classes>
+    </test>-->
+</suite>
