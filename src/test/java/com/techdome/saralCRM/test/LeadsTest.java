@@ -245,6 +245,8 @@ public class LeadsTest extends BaseTest {
     public void TC_23_to_verify_without_uploading_the_document(){
         leadsPage.emptyDocumentUpload();
         Assert.assertEquals(leadsPage.docValidation(),apkConstant.emptyDocument);
+
+
     }
 //    @Test(dataProvider = "LeadsData", priority = 23,description = "to upload the document")
 //    public void TC_24_to_upload_the_document(@org.jetbrains.annotations.NotNull Map< String, String > testData) {
