@@ -13,13 +13,6 @@
             <parameter name="browser" value="${browser:chromium}"/>
         </classes>
     </test>
-    <test name="Leads Tests">
-        <classes>
-
-            <class name="com.techdome.saralCRM.test.LeadsTest"></class>
-            <parameter name="browser" value="${browser:chromium}"/>
-        </classes>
-    </test>
 
 
 

@@ -29,7 +29,7 @@ public class LeadsTest extends BaseTest {
     @Test(priority = 1, description = "to verify the login of Saral CRM")
     public void TC_01_verify_login_page (){
         loginPage.login(properties.getProperty("email"),properties.getProperty("password"));
-        Assert.assertEquals(loginPage.userEmail(), "sudharsan@yopmail.com");
+        Assert.assertEquals(loginPage.userEmail(), "sudharsanworklife@gmail.com");
     }
 
     /**
@@ -265,9 +265,9 @@ public class LeadsTest extends BaseTest {
 
 
 
-    /*
-     To click and verify the functionalities of column
-     Expected : The selected columns shouldn't be displayed
+    /**
+     *   To click and verify the functionalities of column
+     *   Expected : The selected columns shouldn't be displayed
      */
 //    @Test(priority = 17, description = "to verify the functionalities of column")
 //    public void TC_17_to_verify_the_functionalities_of_columns(){

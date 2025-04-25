@@ -25,13 +25,13 @@ public class LoginPage {
         page.waitForSelector(LOGIN_BUTTON, new Page.WaitForSelectorOptions().setState(WaitForSelectorState.VISIBLE).setTimeout(2000));
         page.click(LOGIN_BUTTON);
         logger.info("login");
-        page.waitForTimeout(30000);
+        //page.waitForTimeout(7000);
+//        page.navigate("https://saralcrm.techdomeaks.com/workspace/leads");
     }
 
+
     public String userEmail() {
-
-        page.waitForSelector(TO_VALIDATE_EMAIL, new Page.WaitForSelectorOptions().setState(WaitForSelectorState.VISIBLE));
-
+        page.waitForSelector(TO_VALIDATE_EMAIL, new Page.WaitForSelectorOptions().setState(WaitForSelectorState.VISIBLE).setTimeout(7000));
         return page.textContent(TO_VALIDATE_EMAIL);
     }
 
@@ -61,8 +61,7 @@ public class LoginPage {
     }
 
     public String invalidEmail() {
-        // page.waitForSelector(INVALID_EMAIL, new Page.WaitForSelectorOptions().setState(WaitForSelectorState.VISIBLE));
-
+         page.waitForSelector(INVALID_EMAIL, new Page.WaitForSelectorOptions().setState(WaitForSelectorState.VISIBLE).setTimeout(3000));
         return page.textContent(INVALID_EMAIL);
     }
 
@@ -130,10 +129,12 @@ public class LoginPage {
         page.fill(EMAIL_FIELD, email);
         page.waitForSelector(LOGIN_BUTTON, new Page.WaitForSelectorOptions().setState(WaitForSelectorState.VISIBLE).setTimeout(2000));
         page.click(LOGIN_BUTTON);
-        page.waitForTimeout(2000);
+
     }
 
     public String withoutPassword() {
+
+        page.waitForSelector(WITHOUT_PASSWORD, new Page.WaitForSelectorOptions().setState(WaitForSelectorState.VISIBLE).setTimeout(2000));
         return page.textContent(WITHOUT_PASSWORD);
     }
 
@@ -142,7 +143,7 @@ public class LoginPage {
         page.fill(PASSWORD_FIElD, password);
         page.waitForSelector(LOGIN_BUTTON, new Page.WaitForSelectorOptions().setState(WaitForSelectorState.VISIBLE).setTimeout(2000));
         page.click(LOGIN_BUTTON);
-        page.waitForTimeout(2000);
+        page.waitForTimeout(4000);
     }
 
 

@@ -89,11 +89,11 @@ public class LoginTest extends BaseTest {
 
     }
 
-//    @Test(priority = 11, description = "to verify the login to SaralCRM")
-//    public void TC_11_verify_login_page() {
-//        loginPage.login(properties.getProperty("email"), properties.getProperty("password"));
-//        Assert.assertEquals(loginPage.userEmail(), "sudharsan.venkatachalam@techdome.net.in");
-//    }
+    @Test(priority = 11, description = "to verify the login to SaralCRM")
+    public void TC_11_verify_login_page() {
+        loginPage.login(properties.getProperty("email"), properties.getProperty("password"));
+        Assert.assertEquals(loginPage.userEmail(), "sudharsanworklife@gmail.com");
+    }
 
 
 

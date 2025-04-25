@@ -5,18 +5,21 @@ import Saral.util.LoggerUtils;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 import Saral.util.LoggerUtils;
+import com.techdome.saralCRM.util.WrapperClass;
 
 import java.nio.file.Paths;
 
 import static com.techdome.saralCRM.util.WrapperClass.*;
 import static com.techdome.saralCRM.Pages.Locator_Constant.*;
 
-public class LeadsPage  {
+public class LeadsPage extends WrapperClass {
     private final Page page;
     private final LoggerUtils logger = new LoggerUtils(LeadsPage.class);
-    public LeadsPage(Page page) {
 
+    public LeadsPage(Page page) {
+        super(page);
         this.page = page;
+
     }
 
 
@@ -494,12 +497,14 @@ public class LeadsPage  {
         fill(EP_USER_NAME,name);
         fill(EP_USER_ID,id);
         click(BTN_UPDATE_LEAD);
-        page.waitForTimeout(10000);
+        page.waitForTimeout(20000);
         // waitForSelector(USER_NAME_TEXT,30000);
     }
     public void invalidUser(String name, String id){
         fill(EP_USER_NAME,name);
         fill(EP_USER_ID,id);
+        waitForSelector(EP_USER_ID,2000);
+        waitForSelector(EP_INVALID_ID,2000);
     }
 
     public String invalidName(){
@@ -540,6 +545,7 @@ public class LeadsPage  {
         waitForSelector(BTN_UPLOAD_DOCUMENT,7000);
         click(BTN_UPLOAD_DOCUMENT);
         click(BTN_IMPORT);
+        waitForSelector(EMPTY_DOC_VALIDATION_MSG,2000);
     }
 
     public String docValidation(){

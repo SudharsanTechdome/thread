@@ -36,7 +36,9 @@ public class BaseTest {
 
         try {
             // Initialize Playwright Factory and properties
-            playwrightFactory = PlaywrightFactory.getInstance();
+           // laywrightFactory =
+            playwrightFactory=new PlaywrightFactory();
+            playwrightFactory.getInstance();
             properties = playwrightFactory.initProperties();
 
             if (properties == null) {
@@ -58,6 +60,8 @@ public class BaseTest {
 
             // Initialize page objects
             loginPage = new LoginPage(browserPage);
+            leadsPage=new LeadsPage(browserPage);
+            apkConstant = new APKConstant();
 
             logger.info("[Thread: %d] Test setup completed successfully".formatted(threadId));
 
@@ -113,7 +117,7 @@ public class BaseTest {
         }
 
         // Clean up the thread local storage
-        PlaywrightFactory.cleanAllThreadLocals();
+        playwrightFactory.cleanAllThreadLocals();
     }
 
     /**

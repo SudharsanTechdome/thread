@@ -7,7 +7,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Base64;
 import java.util.Properties;
 
@@ -17,7 +16,7 @@ public class PlaywrightFactory {
     private static final LoggerUtils logger = new LoggerUtils(PlaywrightFactory.class);
 
     // Thread local storage for playwright instances
-    private static final ThreadLocal<PlaywrightFactory> FACTORY_THREAD_LOCAL = ThreadLocal.withInitial(() -> null);
+    private  final ThreadLocal<PlaywrightFactory> FACTORY_THREAD_LOCAL = ThreadLocal.withInitial(() -> null);
     private final ThreadLocal<Playwright> playwright = ThreadLocal.withInitial(() -> null);
     private final ThreadLocal<Browser> browser = ThreadLocal.withInitial(() -> null);
     private final ThreadLocal<BrowserContext> browserContext = ThreadLocal.withInitial(() -> null);
@@ -29,7 +28,7 @@ public class PlaywrightFactory {
      *
      * @return the thread-local instance of PlaywrightFactory
      */
-    public static PlaywrightFactory getInstance() {
+    public  PlaywrightFactory getInstance() {
         if (FACTORY_THREAD_LOCAL.get() == null) {
             synchronized (PlaywrightFactory.class) {
                 if (FACTORY_THREAD_LOCAL.get() == null) {
@@ -120,7 +119,7 @@ public class PlaywrightFactory {
      */
     public Properties initProperties() {
         Properties properties = new Properties();
-        String configPath = System.getProperty("ENV_LOCATION", "./src/test/resources/config/config.properties");
+        String configPath = System.getProperty("ENV_LOCATION", "src/main/resources/config/config.properties");
 
         try (var files = new FileInputStream(configPath)) {
             logger.info("[Thread: %d] Loading properties from file: %s"
@@ -194,7 +193,7 @@ public class PlaywrightFactory {
     /**
      * Cleans up all thread local resources
      */
-    public static void cleanAllThreadLocals() {
+    public  void cleanAllThreadLocals() {
         logger.info("Cleaning up all thread local resources");
         FACTORY_THREAD_LOCAL.remove();
     }

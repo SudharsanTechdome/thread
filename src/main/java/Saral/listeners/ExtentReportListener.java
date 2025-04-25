@@ -120,7 +120,7 @@ public class ExtentReportListener implements ITestListener {
 
         // Initialize PlaywrightFactory for this thread if needed
         if (!factoryMap.containsKey(threadId)) {
-            PlaywrightFactory factory = PlaywrightFactory.getInstance();
+            PlaywrightFactory factory =new PlaywrightFactory().getInstance();
             Properties props = factory.initProperties();
             //factory.initBrowser(props);
             factoryMap.put(threadId, factory);
