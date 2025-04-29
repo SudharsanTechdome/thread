@@ -91,8 +91,19 @@ public class Locator_Constant {
     protected static final String BTN_IMPORT = "//button[text()='Import']";
     protected static final String DOCUMENT_DROPDOWN = "//span[@class='truncate flex-1 mr-2 text-gray-700']";
     protected static final String CHOOSE_FILE = "//button[text() = 'Choose file']";
-    protected static final String ALL_DROPDOWN_ELEMENTS = "fixed bg-white border border-[#DEE2E6] rounded-md shadow-lg max-h-33 overflow-y-auto z-[9999]";
-
+    protected static final String ALL_DROPDOWN_ELEMENTS = "//div[@class='fixed bg-white border border-[#DEE2E6] rounded-md shadow-lg max-h-33 overflow-y-auto z-[9999]']/div";
+    protected static final String MENU = "(//i[@class='bi bi-three-dots-vertical cursor-pointer'])[1]";
+    protected static final String QUICK_OPTIONS_DROPDOWN = "//div[@class='absolute right-0 mt-2 w-40 border border-gray-300 bg-white rounded-md z-10']";
+    protected static final String BTN_DELETE = "//li[text()='Delete']";
+    protected static final String BTN_RENAME = "//li[text()='Rename']";
+    protected static final String TXT_DOCUMENT_NAME = "//input[@type ='text']";
+    protected static final String BTN_SAVE_RENAME = "//button[text() = 'Save']";
+    protected static final String BTN_CANCEL_RENAME = "//button[text() = 'Cancel']";
+    protected static final String RENAMED_NAME = "//td[@class='!p-2 flex-1 items-center']";
+    protected static final String BTN_DELETE_OPTION = "//button[text()='Delete']";
+    protected static final String BTN_CANCEL_DELETE = "//button[text()='Cancel']";
+    protected static final String COLUMN_HEADING = "//thead[@class='sticky top-0 bg-success text-white z-10']";
+    protected static final String RESET_TO_DEFAULT = "//div[text()='Reset to Default']";
 
 
 

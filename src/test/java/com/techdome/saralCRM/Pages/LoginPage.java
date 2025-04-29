@@ -22,7 +22,7 @@ public class LoginPage {
     public void login(String email, String password) {
         page.fill(EMAIL_FIELD, email);
         page.fill(PASSWORD_FIElD, password);
-        page.waitForSelector(LOGIN_BUTTON, new Page.WaitForSelectorOptions().setState(WaitForSelectorState.VISIBLE).setTimeout(2000));
+        page.waitForSelector(LOGIN_BUTTON, new Page.WaitForSelectorOptions().setState(WaitForSelectorState.VISIBLE).setTimeout(5000));
         page.click(LOGIN_BUTTON);
         logger.info("login");
         //page.waitForTimeout(7000);
@@ -31,7 +31,7 @@ public class LoginPage {
 
 
     public String userEmail() {
-        page.waitForSelector(TO_VALIDATE_EMAIL, new Page.WaitForSelectorOptions().setState(WaitForSelectorState.VISIBLE).setTimeout(7000));
+        page.waitForSelector(TO_VALIDATE_EMAIL, new Page.WaitForSelectorOptions().setState(WaitForSelectorState.VISIBLE).setTimeout(10000));
         return page.textContent(TO_VALIDATE_EMAIL);
     }
 
@@ -48,6 +48,7 @@ public class LoginPage {
     }
 
     public String resetPassword() {
+
         return page.textContent(RESET_PASSWORD_MSG);
     }
 
@@ -58,6 +59,7 @@ public class LoginPage {
         page.waitForSelector(LOGIN_BUTTON, new Page.WaitForSelectorOptions().setState(WaitForSelectorState.VISIBLE).setTimeout(2000));
         page.click(LOGIN_BUTTON);
         page.waitForTimeout(5000);
+
     }
 
     public String invalidEmail() {
@@ -89,6 +91,7 @@ public class LoginPage {
     }
 
     public String notRegisteredEmail() {
+        page.waitForSelector(NOT_REGISTERED_EMAIL, new Page.WaitForSelectorOptions().setState(WaitForSelectorState.VISIBLE).setTimeout(2000));
         return page.textContent(NOT_REGISTERED_EMAIL);
     }
 
@@ -134,7 +137,7 @@ public class LoginPage {
 
     public String withoutPassword() {
 
-        page.waitForSelector(WITHOUT_PASSWORD, new Page.WaitForSelectorOptions().setState(WaitForSelectorState.VISIBLE).setTimeout(2000));
+        page.waitForSelector(WITHOUT_PASSWORD, new Page.WaitForSelectorOptions().setState(WaitForSelectorState.VISIBLE).setTimeout(5000));
         return page.textContent(WITHOUT_PASSWORD);
     }
 
@@ -149,10 +152,11 @@ public class LoginPage {
 
     public void invalidForgotPasswords(String emailaddress) {
         page.click(FORGOT_PASSWORD);
-        page.waitForSelector(EMAIL_ADDRESS, new Page.WaitForSelectorOptions().setState(WaitForSelectorState.VISIBLE).setTimeout(2000));
+        page.waitForSelector(EMAIL_ADDRESS, new Page.WaitForSelectorOptions().setState(WaitForSelectorState.VISIBLE).setTimeout(5000));
         page.fill(EMAIL_ADDRESS, emailaddress);
-        page.waitForSelector(BTN_RESETPASSWORD, new Page.WaitForSelectorOptions().setState(WaitForSelectorState.VISIBLE).setTimeout(2000));
+        page.waitForSelector(BTN_RESETPASSWORD, new Page.WaitForSelectorOptions().setState(WaitForSelectorState.VISIBLE).setTimeout(5000));
         page.click(BTN_RESETPASSWORD);
+        page.waitForTimeout(5000);
     }
 
     public void notRegisteredForgotPasswords(String emailaddress) {
@@ -160,6 +164,7 @@ public class LoginPage {
         page.fill(EMAIL_ADDRESS, emailaddress);
         page.waitForSelector(BTN_RESETPASSWORD, new Page.WaitForSelectorOptions().setState(WaitForSelectorState.VISIBLE).setTimeout(2000));
         page.click(BTN_RESETPASSWORD);
+        page.waitForTimeout(3000);
 
     }
 

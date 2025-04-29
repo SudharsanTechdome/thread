@@ -11,4 +11,9 @@ public class APKConstant {
     public String invalidId = "Please enter a valid email address";
 
     public String emptyDocument = "Please select a document type.";
+
+    public static String documentUploaded = "Successfully uploaded 1 document(s)";
+
+    public static String documentDeleted = "Sudharsan has been deleted successfully";
+
 }

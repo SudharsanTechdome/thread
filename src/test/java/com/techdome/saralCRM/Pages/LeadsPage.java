@@ -2,10 +2,13 @@ package com.techdome.saralCRM.Pages;
 
 
 import Saral.util.LoggerUtils;
+import com.microsoft.playwright.FileChooser;
 import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 import Saral.util.LoggerUtils;
 import com.techdome.saralCRM.util.WrapperClass;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.nio.file.Paths;
 
@@ -13,6 +16,7 @@ import static com.techdome.saralCRM.util.WrapperClass.*;
 import static com.techdome.saralCRM.Pages.Locator_Constant.*;
 
 public class LeadsPage extends WrapperClass {
+    private static final Logger log = LoggerFactory.getLogger(LeadsPage.class);
     private final Page page;
     private final LoggerUtils logger = new LoggerUtils(LeadsPage.class);
 
@@ -24,6 +28,8 @@ public class LeadsPage extends WrapperClass {
 
 
     public void loanAmountUpTo25L() {
+        click(BTN_CANCEL);
+        waitForSelector(BTN_FILTER,6000);
         click(BTN_FILTER);
         click(CKBOX_UPTO25L);
         click(BTN_APPLYFILTER);
@@ -31,8 +37,8 @@ public class LeadsPage extends WrapperClass {
 
     }
     public Boolean loanUpTo25L() {
+        waitForSelector(LOAN_AMOUNT_VALUE,20000);
         page.textContent(LOAN_AMOUNT_VALUE);
-
         Locator loanAmountCells = page.locator(LOAN_AMOUNT_VALUE);
         boolean flag=false;
         int count = loanAmountCells.count();
@@ -57,12 +63,14 @@ public class LeadsPage extends WrapperClass {
     }
 
     public void loanAmountUpTo2CR() {
+        waitForSelector(BTN_FILTER,5000);
         click(BTN_FILTER);
         click(BTN_CLEAR_ALL);
-        page.waitForTimeout(3000);
         waitForSelector(BTN_FILTER,10000);
         click(BTN_FILTER);
+        page.waitForTimeout(5000);
         click(CKBOX_UPTO2CR);
+        page.waitForTimeout(5000);
         click(BTN_APPLYFILTER);
         // waitForSelector(LOAN_AMOUNT_VALUE,40000);
 
@@ -70,7 +78,7 @@ public class LeadsPage extends WrapperClass {
 
 
     public Boolean loanUpTo2CR() {
-        waitForSelector(LOAN_AMOUNT_VALUE,40000);
+        waitForSelector(LOAN_AMOUNT_VALUE,20000);
         page.textContent(LOAN_AMOUNT_VALUE);
         Locator loanAmountCells = page.locator(LOAN_AMOUNT_VALUE);
         boolean flag=false;
@@ -91,14 +99,14 @@ public class LeadsPage extends WrapperClass {
 
 
     public void loanAmountUpTo10CR() {
+        waitForSelector(BTN_FILTER,5000);
         click(BTN_FILTER);
         click(BTN_CLEAR_ALL);
-        page.waitForTimeout(3000);
-        waitForSelector(BTN_FILTER,10000);
+        page.waitForTimeout(5000);
         click(BTN_FILTER);
         click(CKBOX_UPTO10CR);
         click(BTN_APPLYFILTER);
-        //   waitForSelector(LOAN_AMOUNT_VALUE,10000);
+      //  waitForSelector(LOAN_AMOUNT_VALUE,10000);
     }
 
     public Boolean loanUpTo10CR() {
@@ -123,11 +131,10 @@ public class LeadsPage extends WrapperClass {
 
 
     public void loanAmountAbove10CR() {
-        page.click(BTN_FILTER);
+        waitForSelector(BTN_FILTER,5000);
         click(BTN_FILTER);
         click(BTN_CLEAR_ALL);
-        page.waitForTimeout(3000);
-        // waitForSelector(BTN_FILTER,40000);
+        page.waitForTimeout(5000);
         click(BTN_FILTER);
         click(CKBOX_ABOVE10CR);
         click(BTN_APPLYFILTER);
@@ -159,12 +166,12 @@ public class LeadsPage extends WrapperClass {
 
 
     public void employmentFilter(){
-
         waitForSelector(BTN_FILTER,10000);
         click(BTN_FILTER);
         click(BTN_CLEAR_ALL);
-        page.waitForTimeout(3000);
+        page.waitForTimeout(5000);
         click(BTN_FILTER);
+        page.waitForTimeout(5000);
         click(FILTER_EMPLOYMENT_TYPE);
         click(CK_SALARY);
         click(CK_BUSINESS);
@@ -173,7 +180,7 @@ public class LeadsPage extends WrapperClass {
     }
 
     public Boolean employmentValues(){
-        waitForSelector(EMPLOYMENT_TYPE_VALUE,10000);
+        waitForSelector(EMPLOYMENT_TYPE_VALUE,20000);
         textContent(EMPLOYMENT_TYPE_VALUE);
         Locator empTypeCells = page.locator(EMPLOYMENT_TYPE_VALUE);
         boolean flag=false;
@@ -197,9 +204,10 @@ public class LeadsPage extends WrapperClass {
         // page.waitForSelector(BTN_FILTER, new Page.WaitForSelectorOptions().setState(WaitForSelectorState.VISIBLE).setTimeout(30000));
         waitForSelector(BTN_FILTER,7000);
         click(BTN_FILTER);
+        waitForSelector(BTN_CLEAR_ALL,3000);
         click(BTN_CLEAR_ALL);
-        page.waitForTimeout(3000);
         click(BTN_FILTER);
+        page.waitForTimeout(5000);
         click(FILTER_CIBIL_SCORE);
         click(CK_UP_TO_500);
         click(BTN_APPLYFILTER);
@@ -232,17 +240,21 @@ public class LeadsPage extends WrapperClass {
     public void CIBILUpTo700(){
         waitForSelector(BTN_FILTER,7000);
         click(BTN_FILTER);
+        waitForSelector(BTN_CLEAR_ALL,3000);
         click(BTN_CLEAR_ALL);
-        page.waitForTimeout(3000);
+        page.waitForTimeout(5000);
+        waitForSelector(BTN_FILTER,3000);
         click(BTN_FILTER);
+        page.waitForTimeout(5000);
         click(FILTER_CIBIL_SCORE);
         click(CK_UP_TO_700);
+        page.waitForTimeout(5000);
         click(BTN_APPLYFILTER);
 //        waitForSelector(CIVIL_VALUE,7000);
     }
 
     public Boolean validateCIBILUpTo700() {
-        waitForSelector(CIVIL_VALUE,7000);
+        waitForSelector(CIVIL_VALUE,10000);
         textContent(CIVIL_VALUE);
         Locator civilValueCells = page.locator(CIVIL_VALUE);
         boolean flag = false;
@@ -267,8 +279,9 @@ public class LeadsPage extends WrapperClass {
         //page.waitForSelector(BTN_FILTER, new Page.WaitForSelectorOptions().setState(WaitForSelectorState.VISIBLE).setTimeout(30000));
         waitForSelector(BTN_FILTER,7000);
         click(BTN_FILTER);
+        waitForSelector(BTN_CLEAR_ALL,3000);
         click(BTN_CLEAR_ALL);
-        page.waitForTimeout(3000);
+        page.waitForTimeout(5000);
         click(BTN_FILTER);
         click(FILTER_CIBIL_SCORE);
         click(CK_UP_TO_850);
@@ -298,10 +311,9 @@ public class LeadsPage extends WrapperClass {
     }
 
     public void sourceFilter(){
-        waitForSelector(BTN_FILTER,10000);
         click(BTN_FILTER);
         click(BTN_CLEAR_ALL);
-        page.waitForTimeout(3000);
+        page.waitForTimeout(5000);
         click(BTN_FILTER);
         click(BTN_FILTER_SOURCE);
         click(CK_FACEBOOK);
@@ -361,6 +373,7 @@ public class LeadsPage extends WrapperClass {
     }
 
     public void partialData(String name, String number , String id){
+        page.waitForTimeout(2000);
         fill(TEXT_NAME,name);
         fill(TEXT_NUMBER,number);
         fill(TEXT_ID,id);
@@ -420,19 +433,23 @@ public class LeadsPage extends WrapperClass {
 
     public void searchData(String searchText ){
         //page.waitForSelector(BTN_FILTER, new Page.WaitForSelectorOptions().setState(WaitForSelectorState.VISIBLE).setTimeout(7000));
-        waitForSelector(BTN_FILTER,7000);
+        page.waitForTimeout(5000);
         click(BTN_FILTER);
         click(BTN_CLEAR_ALL);
+        waitForSelector(SEARCH_BAR,7000);
+        log.info("Clicked search bar");
         click(SEARCH_BAR);
+        log.info("Clicked search bar");
         fill(SEARCH_BAR,searchText);
         click(SEARCH_ICON);
-        waitForSelector(SEARCH_USER,30000);
+        page.waitForTimeout(7000);
+        waitForSelector(SEARCH_USER,10000);
 //        page.waitForSelector(SEARCH_USER, new Page.WaitForSelectorOptions().setState(WaitForSelectorState.VISIBLE).setTimeout(10000));
 
     }
 
     public String searchUser(){
-        waitForSelector(SEARCH_USER,30000);
+        waitForSelector(SEARCH_USER,5000);
         return textContent(SEARCH_USER);
     }
 
@@ -527,6 +544,7 @@ public class LeadsPage extends WrapperClass {
     }
 
     public String txtContent(){
+
         return textContent(TXT_CONTENT);
     }
 
@@ -535,8 +553,7 @@ public class LeadsPage extends WrapperClass {
         click(TXTBOX_ADD_NOTE);
         fill(TXTBOX_ADD_NOTE,note);
         click(CANCEL_ADDED_NOTES);
-        //page.waitForTimeout(8000);
-        waitForSelector(TXT_CONTENT,20000);
+       waitForSelector(TXT_CONTENT,20000);
 
     }
 
@@ -549,19 +566,65 @@ public class LeadsPage extends WrapperClass {
     }
 
     public String docValidation(){
+
         return textContent(EMPTY_DOC_VALIDATION_MSG);
     }
+
 
 
     public void uploadDocument(String Aadhar){
         waitForSelector(DOCUMENT_DROPDOWN,30000);
         click(DOCUMENT_DROPDOWN);
+        page.waitForTimeout(5000);
         page.locator((ALL_DROPDOWN_ELEMENTS), new Page.LocatorOptions().setHasText(Aadhar)).click();
-        click(CHOOSE_FILE);
-        page.setInputFiles("input[type='file']", Paths.get("src/SaralCRM_test/resources/test-data/PRAYAS_JAIN__CIBIL_Report.pdf"));
+        page.waitForTimeout(5000);
+        // click(CHOOSE_FILE);
+        page.waitForTimeout(5000);
+        FileChooser fileChooser = page.waitForFileChooser(() -> page.locator(CHOOSE_FILE).click());
+        fileChooser.setFiles(Paths.get("src/test/resources/resources/test-data/PRAYAS_JAIN__CIBIL_Report.pdf"));
+        // page.setInputFiles(CHOOSE_FILE, Paths.get("src/SaralCRM_test/resources/test-data/PRAYAS_JAIN__CIBIL_Report.pdf"));
         click(BTN_IMPORT);
+        waitForSelector(APPLY_FILTERS_NOTIFICATION,10000);
+
     }
 
+    public String uploadedDocument(){
+        return textContent(APPLY_FILTERS_NOTIFICATION);
+    }
+
+
+    public void toRename(String name){
+        page.waitForTimeout(8000);
+        click(MENU);
+        click(BTN_RENAME);
+        page.locator(TXT_DOCUMENT_NAME).clear();
+        fill(TXT_DOCUMENT_NAME,name);
+        click(BTN_SAVE_RENAME);
+        page.waitForTimeout(15000);
+    }
+
+    public String rephrasedName(){
+        return textContent(RENAMED_NAME);
+    }
+
+    public void cancelDeleteOption(){
+        page.waitForTimeout(8000);
+        click(MENU);
+        click(BTN_DELETE);
+        click(BTN_CANCEL_DELETE);
+
+    }
+
+    public void toDelete(){
+        page.waitForTimeout(3000);
+        click(MENU);
+        click(BTN_DELETE);
+        click(BTN_DELETE_OPTION);
+    }
+
+    public String deleteToste(){
+        return textContent(APPLY_FILTERS_NOTIFICATION);
+    }
 
 
 
