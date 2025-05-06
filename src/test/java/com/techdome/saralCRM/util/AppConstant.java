@@ -1,6 +1,6 @@
 package com.techdome.saralCRM.util;
 
-public class APKConstant {
+public class AppConstant {
 
     public String existingNumber="A user with this phone number already exists";
 

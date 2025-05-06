@@ -5,14 +5,11 @@ import com.microsoft.playwright.Page;
 import Saral.util.LoggerUtils;
 import com.techdome.saralCRM.Pages.LeadsPage;
 import com.techdome.saralCRM.Pages.LoginPage;
-import com.techdome.saralCRM.util.APKConstant;
+import com.techdome.saralCRM.util.AppConstant;
 import org.testng.annotations.*;
 
 import java.io.File;
-import java.nio.file.Path;
 import java.util.Properties;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
 public class BaseTest {
@@ -24,7 +21,7 @@ public class BaseTest {
     protected Properties properties;
     protected LoginPage loginPage;
     protected LeadsPage leadsPage;
-    protected APKConstant apkConstant;
+    protected AppConstant apkConstant;
     /**
      * Sets up the test environment before each test method.
      * Changed from @BeforeClass to @BeforeMethod for parallel execution.
@@ -61,7 +58,7 @@ public class BaseTest {
             // Initialize page objects
             loginPage = new LoginPage(browserPage);
             leadsPage=new LeadsPage(browserPage);
-            apkConstant = new APKConstant();
+            apkConstant = new AppConstant();
 
             logger.info("[Thread: %d] Test setup completed successfully".formatted(threadId));
 
@@ -136,7 +133,7 @@ public class BaseTest {
         }
 
         if (apkConstant == null) {
-            apkConstant = new APKConstant();
+            apkConstant = new AppConstant();
         }
     }
 

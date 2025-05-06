@@ -56,20 +56,20 @@ public class PlaywrightFactory {
 
             browser.set(switch (browserName.toLowerCase()) {
                 case "chromium" -> playwright.get().chromium()
-                        .launch(new BrowserType.LaunchOptions().setHeadless(false));
+                        .launch(new BrowserType.LaunchOptions().setHeadless(true));
                 case "firefox" -> playwright.get().firefox()
-                        .launch(new BrowserType.LaunchOptions().setHeadless(false));
+                        .launch(new BrowserType.LaunchOptions().setHeadless(true));
                 case "safari" -> playwright.get().webkit()
-                        .launch(new BrowserType.LaunchOptions().setHeadless(false));
+                        .launch(new BrowserType.LaunchOptions().setHeadless(true));
                 case "chrome" -> playwright.get().chromium()
                         .launch(new BrowserType.LaunchOptions()
                                 .setChannel("chrome")
-                                .setHeadless(false));
+                                .setHeadless(true));
                 default -> {
                     logger.error("[Thread: %d] Invalid browser name: %s"
                             .formatted(Thread.currentThread().getId(), browserName));
                     yield playwright.get().chromium()
-                            .launch(new BrowserType.LaunchOptions().setHeadless(false));
+                            .launch(new BrowserType.LaunchOptions().setHeadless(true));
                 }
             });
 

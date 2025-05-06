@@ -42,7 +42,7 @@ public class LoginPage {
         page.fill(EMAIL_ADDRESS, emailaddress);
         page.waitForSelector(BTN_RESETPASSWORD, new Page.WaitForSelectorOptions().setState(WaitForSelectorState.VISIBLE).setTimeout(2000));
         page.click(BTN_RESETPASSWORD);
-        page.waitForSelector(BTN_BACK_TO_LOGIN, new Page.WaitForSelectorOptions().setState(WaitForSelectorState.VISIBLE).setTimeout(2000));
+        page.waitForSelector(BTN_BACK_TO_LOGIN, new Page.WaitForSelectorOptions().setState(WaitForSelectorState.VISIBLE).setTimeout(4000));
         page.click(BTN_BACK_TO_LOGIN);
         page.waitForTimeout(5000);
     }

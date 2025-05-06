@@ -89,7 +89,7 @@ public class Locator_Constant {
     protected static final String BTN_UPLOAD_DOCUMENT = "//button[text()='Upload Document']";
     protected static final String EMPTY_DOC_VALIDATION_MSG = "//p[@class='text-red-600 text-sm mt-1']";
     protected static final String BTN_IMPORT = "//button[text()='Import']";
-    protected static final String DOCUMENT_DROPDOWN = "//span[@class='truncate flex-1 mr-2 text-gray-700']";
+    protected static final String DOCUMENT_DROPDOWN = "//span[text()='Select the kind of document']";
     protected static final String CHOOSE_FILE = "//button[text() = 'Choose file']";
     protected static final String ALL_DROPDOWN_ELEMENTS = "//div[@class='fixed bg-white border border-[#DEE2E6] rounded-md shadow-lg max-h-33 overflow-y-auto z-[9999]']/div";
     protected static final String MENU = "(//i[@class='bi bi-three-dots-vertical cursor-pointer'])[1]";

@@ -14,25 +14,28 @@ import com.techdome.saralCRM.Pages.LeadsPage;
 
 import java.nio.channels.Selector;
 
-public class WrapperClass {
-    private final  Page page;
+public  class WrapperClass {
+    private static  Page page;
     //private final LoggerUtils logger = new LoggerUtils(LeadsPage.class);
     public  WrapperClass(Page page) {
         this.page = page;
     }
-    public  void click(String selectors){
+    public static void click(String selectors){
+
         page.click(selectors);
     }
 
-    public  void fill(String selectors ,String value){
+    public static void fill(String selectors ,String value){
+
         page.fill(selectors,value);
     }
 
-    public  void waitForSelector(String selectors, Integer timeout){
+    public static void waitForSelector(String selectors, Integer timeout){
         page.waitForSelector(selectors, new Page.WaitForSelectorOptions().setState(WaitForSelectorState.VISIBLE).setTimeout(timeout));
     }
 
     public  String textContent(String selector){
+
         return page.textContent(selector);
     }
 

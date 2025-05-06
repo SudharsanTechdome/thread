@@ -1,0 +1,60 @@
+name: Run Maven Test
+
+on:
+  push:
+    branches: ["sudharsan"]
+  pull_request:
+    branches: ["sudharsan"]
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Debug - Check Files in Runner
+        run: |
+          echo "Current directory:"
+          pwd  
+          echo "Listing all files in repository:"
+          ls -R  
+
+      - name: Verify `testng.xml` Exists
+        run: |
+          ls -R src/test/resources/resources/test-data/testng.xml || echo "testng.xml NOT FOUND!"
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v3
+        with:
+          java-version: '21'
+          distribution: 'oracle'
+          cache: maven
+
+      - name: Install Playwright dependencies
+        run: |
+          sudo apt-get update
+          sudo mvn exec:java -e -Dexec.mainClass=com.microsoft.playwright.CLI -Dexec.args="install-deps"
+
+      - name: Force Rebuild (Ensure Compilation)
+        run: mvn clean install -DskipTests
+
+      - name: Debug - Check Compiled Test Classes
+        run: ls -R target/test-classes/com/techdome/SaralCRM/listeners/ || echo "ExtentReportListener.class NOT FOUND!"
+
+      - name: Debug - Print Maven Classpath
+        run: mvn dependency:build-classpath
+
+      - name: Run Maven Build and Tests in Headless Mode
+        run: |
+          TESTNG_PATH="$(pwd)/src/test/resources/resources/test-data/testng.xml"
+          echo "Running tests using testng.xml from: $TESTNG_PATH"
+          xvfb-run mvn clean install -DsuiteXmlFile="$TESTNG_PATH"
+
+      - name: Upload Extent HTML report
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: go-rest-report
+          path: build/*.html

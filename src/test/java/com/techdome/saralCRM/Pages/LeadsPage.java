@@ -102,7 +102,7 @@ public class LeadsPage extends WrapperClass {
         waitForSelector(BTN_FILTER,5000);
         click(BTN_FILTER);
         click(BTN_CLEAR_ALL);
-        page.waitForTimeout(5000);
+        page.waitForTimeout(7000);
         click(BTN_FILTER);
         click(CKBOX_UPTO10CR);
         click(BTN_APPLYFILTER);
@@ -352,6 +352,7 @@ public class LeadsPage extends WrapperClass {
 
 
     public void addLead(){
+        waitForSelector(BTN_ADDLEAD,10000);
         click(BTN_ADDLEAD);
         waitForSelector(BTN_LEAD,10000);
         click(BTN_LEAD);
@@ -453,33 +454,6 @@ public class LeadsPage extends WrapperClass {
         return textContent(SEARCH_USER);
     }
 
-
-    public void saveColumnOptions(){
-        click(BTN_COLUMNS);
-        click(LOAN_AMOUNT_TOGGLE);
-        click(LEAD_SOURCE_TOGGLE);
-        click(LOAN_TYPE_TOGGLE);
-        click(EMPLOYMENT_TYPE_TOGGLE);
-        click(CIBIL_SCORE_TOGGLE);
-        click(ADDED_ON_TOGGLE);
-        click(COLUMN_SAVE_BTN);
-
-
-    }
-
-
-    public void cancelColumnOptions(){
-        click(BTN_COLUMNS);
-        click(LOAN_AMOUNT_TOGGLE);
-        click(LEAD_SOURCE_TOGGLE);
-        click(LOAN_TYPE_TOGGLE);
-        click(EMPLOYMENT_TYPE_TOGGLE);
-        click(CIBIL_SCORE_TOGGLE);
-        click(ADDED_ON_TOGGLE);
-        click(COLUMN_CANCEL_BTN);
-
-    }
-
     public void toClearEditProfile(){
         click(BTN_EYE_ICON);
         click(BTN_EDIT_PROFILE);
@@ -488,15 +462,18 @@ public class LeadsPage extends WrapperClass {
     }
 
     public String userText(){
+
         return textContent(USER_NAME_TEXT);
     }
 
     public String validationMessageName(){
+
         return textContent(VALIDATION_MESSAGE);
     }
 
 
     public String validationMessageId(){
+
         return textContent(VALIDATION_MESSAGE);
     }
 
@@ -572,26 +549,23 @@ public class LeadsPage extends WrapperClass {
 
 
 
-    public void uploadDocument(String Aadhar){
+    public void uploadDocument(String Aadhar, String pdf){
         waitForSelector(DOCUMENT_DROPDOWN,30000);
         click(DOCUMENT_DROPDOWN);
-        page.waitForTimeout(5000);
         page.locator((ALL_DROPDOWN_ELEMENTS), new Page.LocatorOptions().setHasText(Aadhar)).click();
         page.waitForTimeout(5000);
         // click(CHOOSE_FILE);
         page.waitForTimeout(5000);
         FileChooser fileChooser = page.waitForFileChooser(() -> page.locator(CHOOSE_FILE).click());
-        fileChooser.setFiles(Paths.get("src/test/resources/resources/test-data/PRAYAS_JAIN__CIBIL_Report.pdf"));
+        fileChooser.setFiles(Paths.get(pdf));
         // page.setInputFiles(CHOOSE_FILE, Paths.get("src/SaralCRM_test/resources/test-data/PRAYAS_JAIN__CIBIL_Report.pdf"));
         click(BTN_IMPORT);
         waitForSelector(APPLY_FILTERS_NOTIFICATION,10000);
-
     }
 
     public String uploadedDocument(){
         return textContent(APPLY_FILTERS_NOTIFICATION);
     }
-
 
     public void toRename(String name){
         page.waitForTimeout(8000);
@@ -623,7 +597,206 @@ public class LeadsPage extends WrapperClass {
     }
 
     public String deleteToste(){
+
         return textContent(APPLY_FILTERS_NOTIFICATION);
+    }
+
+
+    public void columnLoanAmount(){
+        page.reload();
+        waitForSelector(BTN_COLUMNS,10000);
+        click(BTN_COLUMNS);
+        click(LOAN_AMOUNT_TOGGLE);
+        click(COLUMN_SAVE_BTN);
+
+
+    }
+
+
+    public Boolean loanAmount(){
+        waitForSelector(COLUMN_HEADING,10000);
+        textContent(COLUMN_HEADING);
+        Locator loanAmountCells = page.locator(COLUMN_HEADING);
+        boolean flag=false;
+        int count = loanAmountCells.count();
+        for (int i = 0; i < count; i++) {
+            String loanamt = loanAmountCells.nth(i).innerText().trim();
+            logger.info(loanamt);
+            if (loanamt != "Loan Amount") {
+                flag=true;
+                break;
+            }
+        }
+
+        return flag;
+
+    }
+
+    public void columnLeadSource(){
+        waitForSelector(BTN_COLUMNS,5000);
+        click(BTN_COLUMNS);
+        click(RESET_TO_DEFAULT);
+        waitForSelector(BTN_COLUMNS,5000);
+        click(BTN_COLUMNS);
+        click(LEAD_SOURCE_TOGGLE);
+        click(COLUMN_SAVE_BTN);
+    }
+
+    public Boolean leadSource(){
+        waitForSelector(COLUMN_HEADING,10000);
+        textContent(COLUMN_HEADING);
+        Locator leadSourceCells = page.locator(COLUMN_HEADING);
+        boolean flag=false;
+        int count = leadSourceCells.count();
+        for (int i = 0; i < count; i++) {
+            String leadsrc = leadSourceCells.nth(i).innerText().trim();
+            logger.info(leadsrc);
+            if (leadsrc != "Lead Source") {
+                flag=true;
+                break;
+            }
+        }
+
+        return flag;
+
+    }
+
+
+    public void columnEmploymentType(){
+        waitForSelector(BTN_COLUMNS,5000);
+        click(BTN_COLUMNS);
+        click(RESET_TO_DEFAULT);
+        waitForSelector(BTN_COLUMNS,5000);
+        click(BTN_COLUMNS);
+        click(EMPLOYMENT_TYPE_TOGGLE);
+        click(COLUMN_SAVE_BTN);
+    }
+
+
+    public Boolean employmentType(){
+        waitForSelector(COLUMN_HEADING,10000);
+        textContent(COLUMN_HEADING);
+        Locator employmentTypeCells = page.locator(COLUMN_HEADING);
+        boolean flag=false;
+        int count = employmentTypeCells.count();
+        for (int i = 0; i < count; i++) {
+            String empType = employmentTypeCells.nth(i).innerText().trim();
+            logger.info(empType);
+            if (empType != "Employment Type") {
+                flag=true;
+                break;
+            }
+        }
+
+        return flag;
+
+    }
+
+
+    public void columnLoanType(){
+        waitForSelector(BTN_COLUMNS,5000);
+        click(BTN_COLUMNS);
+        click(RESET_TO_DEFAULT);
+        waitForSelector(BTN_COLUMNS,5000);
+        click(BTN_COLUMNS);
+        click(LOAN_TYPE_TOGGLE);
+        click(COLUMN_SAVE_BTN);
+    }
+
+
+    public Boolean loanType(){
+        waitForSelector(COLUMN_HEADING,10000);
+        textContent(COLUMN_HEADING);
+        Locator loanTypeCells = page.locator(COLUMN_HEADING);
+        boolean flag=false;
+        int count = loanTypeCells.count();
+        for (int i = 0; i < count; i++) {
+            String loanType = loanTypeCells.nth(i).innerText().trim();
+            logger.info(loanType);
+            if (loanType != "Loan Type") {
+                flag=true;
+                break;
+            }
+        }
+
+        return flag;
+
+    }
+
+
+    public void columnCIBILScore(){
+        waitForSelector(BTN_COLUMNS,5000);
+        click(BTN_COLUMNS);
+        click(RESET_TO_DEFAULT);
+        waitForSelector(BTN_COLUMNS,5000);
+        click(BTN_COLUMNS);
+        click(CIBIL_SCORE_TOGGLE);
+        click(COLUMN_SAVE_BTN);
+    }
+
+
+    public Boolean CIBILScore(){
+        waitForSelector(COLUMN_HEADING,10000);
+        textContent(COLUMN_HEADING);
+        Locator CIBILScoreCells = page.locator(COLUMN_HEADING);
+        boolean flag=false;
+        int count = CIBILScoreCells.count();
+        for (int i = 0; i < count; i++) {
+            String CIBIL = CIBILScoreCells.nth(i).innerText().trim();
+            logger.info(CIBIL);
+            if (CIBIL != "CIBIL Score") {
+                flag=true;
+                break;
+            }
+        }
+
+        return flag;
+
+    }
+
+
+    public void columnAddedOn(){
+        waitForSelector(BTN_COLUMNS,5000);
+        click(BTN_COLUMNS);
+        click(RESET_TO_DEFAULT);
+        waitForSelector(BTN_COLUMNS,5000);
+        click(BTN_COLUMNS);
+        click(ADDED_ON_TOGGLE);
+        click(COLUMN_SAVE_BTN);
+    }
+
+    public Boolean addedOn(){
+        waitForSelector(COLUMN_HEADING,10000);
+        textContent(COLUMN_HEADING);
+        Locator addedOnCells = page.locator(COLUMN_HEADING);
+        boolean flag=false;
+        int count = addedOnCells.count();
+        for (int i = 0; i < count; i++) {
+            String addon = addedOnCells.nth(i).innerText().trim();
+            logger.info(addon);
+            if (addon != "Added On") {
+                flag=true;
+                break;
+            }
+        }
+
+        return flag;
+
+    }
+
+    public void cancelColumnOptions(){
+        click(BTN_COLUMNS);
+        click(RESET_TO_DEFAULT);
+        waitForSelector(BTN_COLUMNS,5000);
+        click(BTN_COLUMNS);
+        click(LOAN_AMOUNT_TOGGLE);
+        click(LEAD_SOURCE_TOGGLE);
+        click(LOAN_TYPE_TOGGLE);
+        click(EMPLOYMENT_TYPE_TOGGLE);
+        click(CIBIL_SCORE_TOGGLE);
+        click(ADDED_ON_TOGGLE);
+        click(COLUMN_CANCEL_BTN);
+
     }
 
 

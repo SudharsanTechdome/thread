@@ -52,16 +52,16 @@ public class ExtentReportListener implements ITestListener {
             // Initialize ExtentReports
             ExtentReports extentReports = new ExtentReports();
             ExtentSparkReporter reporter = new ExtentSparkReporter(OUTPUT_FOLDER + reportFileName);
-            reporter.config().setReportName("Alphametricx Automation Test Results");
+            reporter.config().setReportName("Saral CRM Automation Test Results");
             reporter.config().setDocumentTitle("Test Automation Report");
 
             extentReports.attachReporter(reporter);
             extentReports.setSystemInfo("System", System.getProperty("os.name"));
             extentReports.setSystemInfo("Java Version", System.getProperty("java.version"));
-            extentReports.setSystemInfo("Author", "Ayush");
+            extentReports.setSystemInfo("Author", "Sudharsan");
             extentReports.setSystemInfo("Build#", "1.1");
             extentReports.setSystemInfo("Team", "Team QA");
-            extentReports.setSystemInfo("Customer Name", "Alphametricx");
+            extentReports.setSystemInfo("Customer Name", "Saral CRM");
 
             return extentReports;
         } catch (IOException e) {
